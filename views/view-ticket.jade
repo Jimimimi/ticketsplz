@@ -26,5 +26,5 @@ block content
       form(action="/ticket/"+ticket.id+"/update", method="POST")
         input(type="hidden", name="ticketId" value="#{ticket.id}")
         input(type="hidden", name="author", value="anonymous")
-        input(type="text", name="update", placeholder="Enter your update").textbox
+        input(type="text", name="update", placeholder="Enter your update", required="true").textbox
         input(type="submit", value="Save").btn.btn-lg.btn-success

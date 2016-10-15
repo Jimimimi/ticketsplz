@@ -12,19 +12,19 @@ block content
         strong #{ticket.id}
       div.status
         div.open(class=ticket.status == 'open' ? 'active' : '')
-          - link = "/admin/ticket/"+ticketId+"/status?status=open"
+          - link = "/admin/ticket/"+ticket.id+"/status?status=open"
           small
             a(href=link) Open
         div.accepted(class=ticket.status == 'accepted' ? 'active' : '')
-          - link = "/admin/ticket/"+ticketId+"/status?status=accepted"
+          - link = "/admin/ticket/"+ticket.id+"/status?status=accepted"
           small
             a(href=link) Accepted
         div.rejected(class=ticket.status == 'rejected' ? 'active' : '')
-          - link = "/admin/ticket/"+ticketId+"/status?status=rejected"
+          - link = "/admin/ticket/"+ticket.id+"/status?status=rejected"
           small
             a(href=link) Rejected
         div.closed(class=ticket.status == 'closed' ? 'active' : '')
-          - link = "/admin/ticket/"+ticketId+"/status?status=closed"
+          - link = "/admin/ticket/"+ticket.id+"/status?status=closed"
           small
             a(href=link) Closed
     - date = moment(ticket.created).fromNow()
@@ -48,7 +48,7 @@ block content
       form(action="/admin/ticket/"+ticket.id+"/update/", method="POST")
         input(type="hidden", name="ticketId" value="#{ticket.id}")
         input(type="hidden", name="author", value="admin")
-        input(type="text", name="update", class="textbox", placeholder="Enter your update")
+        input(type="text", name="update", class="textbox", placeholder="Enter your update", required="true")
         input(type="submit", value="Send").btn.btn-lg.btn-success
 
 

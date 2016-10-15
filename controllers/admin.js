@@ -1,7 +1,6 @@
 var models = require('../models');
 var controller = {
   index: index,
-  find: find,
   render: render,
   update: update,
   updateStatus: updateStatus
@@ -19,20 +18,17 @@ function index (req,res,next){
   })
 }
 
-function find (req,res,next,id){
-  models.Ticket.find({id: id, include: [ models.Update ]})
+function render (req,res,next){
+  models.Ticket.findOne({
+    where: {id: req.params.ticket},
+    include: [ models.Update ]
+  })
   .then(function(ticket){
-
-    req.ticket = ticket;
-    next();
+    res.render('admin-view-ticket', {ticket: ticket});
   })
   .catch(function(err){
      next(new Error('failed to load ticket'));
   });
-}
-
-function render (req,res,next){
-  res.render('admin-view-ticket', {ticket: req.ticket});
 }
 
 function update (req,res,next){
@@ -40,11 +36,11 @@ function update (req,res,next){
     author: req.body.author,
     data:   req.body.update,
     timestamp: new Date(),
-    TicketId: req.ticket.id
+    TicketId: req.params.ticket
   };
   models.Update.create(update)
   .then(function(update){
-    res.redirect('/admin/ticket/' + req.ticket.id);
+    res.redirect('/admin/ticket/' + req.params.ticket);
   })
   .catch(function(err){
     next(new Error(err));
@@ -53,19 +49,19 @@ function update (req,res,next){
 
 function updateStatus (req,res,next){
   var update = {
-    author: req.query.author,
+    author: 'admin',
     data:   'Changed the status to ' + req.query.status,
     timestamp: new Date(),
-    TicketId: req.ticket.id
+    TicketId: req.params.ticket
   };
-  models.Ticket.findById(req.ticket.id)
+  models.Ticket.find({id:req.params.ticket})
   .then(function(ticket){
     ticket.status = req.query.status;
     ticket.save()
     .then(function(){
       models.Update.create(update)
       .then(function(update){
-        res.redirect('/admin/ticket/' + req.ticket.id);
+        res.redirect('/admin/ticket/' + req.params.ticket);
       })
     })
     .catch(function(err){

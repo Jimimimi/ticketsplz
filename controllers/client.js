@@ -1,7 +1,6 @@
 var models = require('../models');
 var controller = {
   index: index,
-  find: find,
   render: render,
   create: create,
   update: update
@@ -13,20 +12,17 @@ function index (req,res,next){
   res.render('new-ticket');
 }
 
-function find (req,res,next,id){
-  models.Ticket.find({id: id, include: [ models.Update ]})
+function render (req,res,next){
+  models.Ticket.findOne({
+    where: {id: req.params.ticket},
+    include: [ models.Update ]
+  })
   .then(function(ticket){
-
-    req.ticket = ticket;
-    next();
+    res.render('view-ticket', {ticket: ticket});
   })
   .catch(function(err){
      next(new Error('failed to load ticket'));
   });
-}
-
-function render (req,res,next){
-  res.render('view-ticket', {ticket: req.ticket});
 }
 
 function create (req,res,next){
@@ -52,11 +48,11 @@ function update (req,res,next){
     author: req.body.author,
     data:   req.body.update,
     timestamp: new Date(),
-    TicketId: req.ticket.id
+    TicketId: req.params.ticket
   };
   models.Update.create(update)
   .then(function(update){
-    res.redirect('/ticket/' + req.ticket.id);
+    res.redirect('/ticket/' + req.params.ticket);
   })
   .catch(function(err){
     next(new Error(err));

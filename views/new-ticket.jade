@@ -7,5 +7,5 @@ block content
         strong New Ticket
     div.reply
       form(action='ticket/', method='post')
-        input(type="text", name="description", placeholder="Please describe your issue").textbox.nosmoke
+        input(type="text", name="description", placeholder="Please describe your issue", required="true").textbox.nosmoke
         input(type="submit", value="Send").btn.btn-lg.btn-success
