@@ -4,8 +4,6 @@
   Copy this file to db.js and edit accordingly
 */
 
-var Sequelize = require('sequelize');
-
 var databases = {
 
 /* For example:
@@ -21,14 +19,4 @@ var databases = {
 }
 
 
-module.exports = mountDB;
-
-function mountDB (env){
-  if (!databases[env]){
-    console.error('No database configuration for environment:', env);
-    return;
-  } else {
-    var db = databases[env];
-    return new Sequelize(db.database, db.user, db.password, db.options);
-  }
-}
+module.exports = databases;
