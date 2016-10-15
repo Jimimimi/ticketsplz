@@ -10,7 +10,7 @@ ion.sound({
         }
     ],
     volume: 0.5,
-    path: "sounds/",
+    path: "/sounds/",
     preload: true
 });
 socket.on('newTicket', function(data){

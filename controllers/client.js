@@ -35,6 +35,8 @@ function create (req,res,next){
 
   models.Ticket.create(ticket)
   .then(function(ticket){
+    // Fire socket.io event
+    res.io.emit('newTicket', ticket);
     // redirect to view
     res.redirect('/ticket/' + ticket.id);
   })
@@ -52,6 +54,11 @@ function update (req,res,next){
   };
   models.Update.create(update)
   .then(function(update){
+
+    // Fire socket.io event
+    res.io.emit('updatedTicket', ticket);
+
+    // redirect to view
     res.redirect('/ticket/' + req.params.ticket);
   })
   .catch(function(err){
