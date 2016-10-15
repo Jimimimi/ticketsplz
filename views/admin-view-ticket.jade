@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  div.ticket
+    header
+      div.back
+        a(href="/admin")
+          small View all
+      div.id
+        span
+          small Ticket ID
+        strong #{ticket.id}
+      div.status
+        div.open(class=ticket.status == 'open' ? 'active' : '')
+          - link = "/admin/ticket/"+ticketId+"/status?status=open"
+          small
+            a(href=link) Open
+        div.accepted(class=ticket.status == 'accepted' ? 'active' : '')
+          - link = "/admin/ticket/"+ticketId+"/status?status=accepted"
+          small
+            a(href=link) Accepted
+        div.rejected(class=ticket.status == 'rejected' ? 'active' : '')
+          - link = "/admin/ticket/"+ticketId+"/status?status=rejected"
+          small
+            a(href=link) Rejected
+        div.closed(class=ticket.status == 'closed' ? 'active' : '')
+          - link = "/admin/ticket/"+ticketId+"/status?status=closed"
+          small
+            a(href=link) Closed
+    - date = moment(ticket.created).fromNow()
+    div.issue
+      div.content
+        p #{ticket.description}
+      small anonymous, #{date}
+    ul.updates
+      each update in ticket.Updates
+        - date = moment(update.timestamp).fromNow()
+
+        li.update
+          div(class=update.author === "admin" ? "admin" : "client")
+            div.author
+              em #{update.author}
+              small #{date}
+            div.content
+              p #{update.data}
+
+    div.reply
+      form(action="/admin/ticket/"+ticket.id+"/update/", method="POST")
+        input(type="hidden", name="ticketId" value="#{ticket.id}")
+        input(type="hidden", name="author", value="admin")
+        input(type="text", name="update", class="textbox", placeholder="Enter your update")
+        input(type="submit", value="Send").btn.btn-lg.btn-success
+
+
+script(src="/javascripts/socket.io/socket.io.js")
+script(src="/javascripts/admin.js")

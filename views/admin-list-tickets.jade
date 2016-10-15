@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div.ticket
+    header
+      div.id
+        span
+          small Ticket List
+      div.status
+    div.list
+      ul.body
+        each ticket in tickets
+          - date = moment(ticket.created).fromNow()
+          a(href="/admin/ticket/"+ticket.id)
+            li.list-item
+              p #{ticket.description}
+              small(class="status "+ticket.status) #{ticket.status}
+              small.date #{date}
+
+  script(src="/javascripts/socket.io/socket.io.js")
+  script(src="/javascripts/admin.js")
