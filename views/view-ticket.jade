@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.ticket
+    header
+      div.id
+        strong Ticket #: #{ticket.id}
+      div.status
+        strong Status: #{ticket.status}
+    - date = moment(ticket.createdAt).fromNow()
+    div.issue
+      div.content
+        p #{ticket.description}
+      small anonymous, #{date}
+    ul.updates
+      each update in ticket.Updates
+        - date = moment(update.timestamp).fromNow()
+        li.update
+          div(class=update.author === "admin" ? "admin" : "client")
+            div.author
+              em #{update.author}
+              small #{date}
+            div.content
+              p #{update.data}
+    div.reply
+      form(action="/ticket/"+ticket.id+"/update", method="put")
+        input(type="hidden", name="ticketId" value="#{ticket.id}")
+        input(type="hidden", name="author", value="anonymous")
+        input(type="text", name="update", placeholder="Enter your update").textbox
+        input(type="submit", value="Save").btn.btn-lg.btn-success
