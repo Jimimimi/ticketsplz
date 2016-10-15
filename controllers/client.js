@@ -26,7 +26,6 @@ function find (req,res,next,id){
 }
 
 function render (req,res,next){
-  console.log(req.ticket);req.ticket
   res.render('view-ticket', {ticket: req.ticket});
 }
 
@@ -50,8 +49,8 @@ function create (req,res,next){
 
 function update (req,res,next){
   var update = {
-    author: req.query.author,
-    data:   req.query.update,
+    author: req.body.author,
+    data:   req.body.update,
     timestamp: new Date(),
     TicketId: req.ticket.id
   };
