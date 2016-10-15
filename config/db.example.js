@@ -20,7 +20,8 @@ var databases = {
   }
 }
 
-module.exports = new Sequelize(DBNAME,DBUSER,DBWORD,OPTIONS);
+
+module.exports = mountDB;
 
 function mountDB (env){
   if (!databases[env]){
@@ -31,5 +32,3 @@ function mountDB (env){
     return new Sequelize(db.database, db.user, db.password, db.options);
   }
 }
-
-module.exports = mountDB;
