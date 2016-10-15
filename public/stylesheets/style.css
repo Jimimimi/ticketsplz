@@ -1,0 +1,306 @@
+/*--------------------
+Body
+--------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  padding-top: 40px;
+  margin: 0;
+  background: -webkit-radial-gradient(ellipse farthest-corner at center top, #ececec, #999999);
+  background: radial-gradient(ellipse farthest-corner at center top, #ececec, #999999);
+  color: #363c44;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*--------------------
+Ticket
+--------------------*/
+.ticket {
+  position: relative;
+  background: #fff;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  margin: 0 auto;
+  max-width: 550px;
+  min-height: 300px;
+  width: 80%;
+}
+
+.ticket small {
+  display: block;
+  font-size: 11px;
+  color: #A2A9B3;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+.ticket strong {
+  font-size: 15px;
+  display: block;
+}
+.ticket header {
+  background: -webkit-linear-gradient(top, #36475f, #2c394f);
+  background: linear-gradient(to bottom, #36475f, #2c394f);
+  border-radius: 5px 5px 0 0;
+  padding: 12px 20px;
+  height: 60px;
+}
+.ticket header .id {
+  max-width: 110px;
+  display: inline-block;
+  /*text-align: center;*/
+}
+.ticket header .back {
+  position: absolute;
+  padding: 5px;
+  left: -61px;
+  top: 5px;
+  background: whitesmoke;
+  border-radius: 3px 0 0 10px;
+}
+
+.ticket ul.body {
+  padding: 0;
+  margin: 0;
+}
+.ticket header .back small,
+.ticket header .back > a,
+.ticket header .back > a:active,
+.ticket header .back > a:hover,
+.ticket header .back > a:focus,
+.ticket header .back > a:visited,
+.ticket ul.body > a,
+.ticket ul.body > a:active,
+.ticket ul.body > a:hover,
+.ticket ul.body > a:focus,
+.ticket ul.body > a:visited  {
+  text-decoration: none;
+  color: #111;
+
+}
+.ticket .list-item {
+  position: relative;
+  background: whitesmoke;
+  padding: 5px;
+  margin: 10px 5px 20px 5px;
+}
+.ticket .list-item .status {
+  position: absolute;
+  padding: 5px;
+  color: #111;
+  text-transform: uppercase;
+  font-size: 8px;
+  opacity: 0.8;
+  right: 0;
+  top: -2px;
+}
+
+.ticket .list-item .status.open {
+  background: white;
+}
+.ticket .list-item .status.accepted {
+  background: greenyellow;
+}
+.ticket .list-item .status.rejected {
+  background: red;
+  color: white;
+}
+.ticket .list-item .status.closed {
+  background: grey;
+}
+.ticket .list-item .date {
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+}
+
+
+.ticket li {
+  list-style: none;
+}
+table td {
+    overflow:hidden;
+}
+.ticket th,
+.ticket tr {
+  font-size: 8px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  text-align: left;
+}
+.ticket header .id strong {
+  color: #fff;
+  font-size: 18px;
+}
+.ticket header small {
+  text-transform: uppercase;
+}
+.ticket header .status {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  color: #fff;
+  top: -20px;
+}
+.ticket header .status small {
+  font-size: 8px;
+  margin-bottom: 2px;
+  opacity: 0.8;
+  text-align: left;
+}
+.ticket header .status strong {
+  font-size: 18px;
+}
+
+.ticket .status div {
+  display: inline-block;
+  opacity: 0.8;
+  transition: 0.1s;
+  cursor: pointer;
+  height: 20px;
+  padding:5px;
+  border-radius: 5px 5px 0 0;
+  margin-right: 3px;
+}
+
+.ticket .status div.active {
+  opacity: 1;
+  height: 30px;
+}
+.ticket .status a {
+  text-decoration: none;
+  color: #111;
+  padding: 5px;
+}
+.ticket .status div:hover {
+  opacity: 0.9;
+}
+.ticket .status a:visited,
+.ticket .status a:active, {
+  text-decoration: none;
+  color: white;
+}
+.ticket .status .open {
+  background: whitesmoke;
+}
+.ticket .status .closed {
+  background: grey;
+}
+
+.ticket .status .accepted {
+  background: greenyellow;
+}
+
+.ticket .status .rejected {
+  background: red;
+}
+
+
+
+.ticket .updates {
+  padding:0;
+  margin: 0;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.ticket .updates .update {
+  padding: 5px 10px;
+  position: relative;
+  list-style: none;
+
+}
+.ticket .updates .update > div {
+  position: relative;
+  width: 50%;
+  padding:10px;
+  border-radius: 3px;
+}
+
+.ticket .issue {
+  padding:10px;
+}
+.ticket .issue .content {
+  padding:5px;
+  background: whitesmoke;
+  border-radius: 0 0 5px 5px;
+}
+.update .client {
+  background: whitesmoke;
+  padding: 10px;
+}
+
+.update .admin {
+  background: greenyellow;
+  padding: 10px;
+}
+
+.update .author {
+  text-align: center;
+  position: absolute;
+}
+
+.update .admin .author {
+  left: -40%;
+}
+.update .client .author {
+  left: 105%;
+}
+.update .admin .author .em {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: greenyellow;
+}
+.update .client .author .em {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: whitesmoke;
+}
+
+.ticket .updates .update .admin {
+  left: 50%;
+}
+.ticket .reply {
+  position: absolute;
+  width: 100%;
+  bottom: -40px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+}
+.ticket .reply .textbox {
+  height: 40px;
+  width: 80%;
+  border: none;
+  padding: 10px;
+  border-top: solid 1px whitesmoke;
+  border-radius: 5px;
+}
+
+.ticket .reply .textbox.nosmoke {
+  box-shadow: none;
+  height: auto;
+}
+
+.ticket .reply .btn {
+  padding: 10px;
+  float: right;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.ticket .reply .textbox:focus,
+.ticket .reply .btn:focus {
+  outline:none;
+}
