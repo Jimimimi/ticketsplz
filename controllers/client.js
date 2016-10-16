@@ -49,20 +49,25 @@ function create (req,res,next){
 }
 
 function update (req,res,next){
-  var update = {
-    author: req.body.author,
-    data:   req.body.update,
-    timestamp: new Date(),
-    TicketId: req.params.ticket
-  };
-  models.Update.create(update)
-  .then(function(update){
+  // Get original ticket author
+  models.Ticket.findById(req.params.ticket)
+  .then(function(ticket){
 
-    // Fire socket.io event
-    res.io.emit('updatedTicket', {});
+    var update = {
+      author: ticket.author,
+      data:   req.body.update,
+      timestamp: new Date(),
+      TicketId: req.params.ticket
+    };
+    models.Update.create(update)
+    .then(function(update){
 
-    // redirect to view
-    res.redirect('/ticket/' + req.params.ticket);
+      // Fire socket.io event
+      res.io.emit('updatedTicket', {});
+
+      // redirect to view
+      res.redirect('/ticket/' + req.params.ticket);
+    })
   })
   .catch(function(err){
     next(new Error(err));

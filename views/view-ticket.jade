@@ -12,10 +12,10 @@ block content
     div.issue
       div.content
         p #{ticket.description}
-      small anonymous, #{date}
+      small #{ticket.author}, #{date}
     ul.updates
       each update in ticket.Updates
-        - date = moment(update.timestamp).fromNow()
+        - date = moment(update.createdAt).fromNow()
         li.update
           div(class=update.author === "admin" ? "admin" : "client")
             div.author
@@ -26,6 +26,5 @@ block content
     div.reply
       form(action="/ticket/"+ticket.id+"/update", method="POST")
         input(type="hidden", name="ticketId" value="#{ticket.id}")
-        input(type="hidden", name="author", value="anonymous")
         input(type="text", name="update", placeholder="Enter your update", required="true").textbox
         input(type="submit", value="Save").btn.btn-lg.btn-success
