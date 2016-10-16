@@ -21,7 +21,7 @@ block content
     div.list
       ul.body
         each ticket in tickets
-          - date = moment(ticket.created).fromNow()
+          - date = moment(ticket.createdAt).fromNow()
           a(href="/admin/ticket/"+ticket.id)
             li.list-item
               p #{ticket.description}

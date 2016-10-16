@@ -27,7 +27,7 @@ block content
           - link = "/admin/ticket/"+ticket.id+"/status?status=closed"
           small
             a(href=link) Closed
-    - date = moment(ticket.created).fromNow()
+    - date = moment(ticket.createdAt).fromNow()
     div.issue
       div.content
         p #{ticket.description}
