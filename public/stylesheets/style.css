@@ -319,6 +319,7 @@ table td {
   bottom: -40px;
   background: white;
   border-radius: 0 0 5px 5px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
 }
 .ticket .reply.base {
   bottom: -35px;
@@ -329,7 +330,6 @@ table td {
   width: 80%;
   border: none;
   padding: 10px;
-  border-top: solid 1px whitesmoke;
   border-radius: 5px;
 }
 
@@ -344,6 +344,7 @@ table td {
   cursor: pointer;
   background: none;
   border: none;
+  box-shadow: -4px 0 5px -4px rgba(0,0,0,0.3);
 }
 .ticket .reply .textbox:focus,
 .ticket .reply .btn:focus {
