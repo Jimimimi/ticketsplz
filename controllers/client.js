@@ -56,7 +56,7 @@ function update (req,res,next){
   .then(function(update){
 
     // Fire socket.io event
-    res.io.emit('updatedTicket', ticket);
+    res.io.emit('updatedTicket', {});
 
     // redirect to view
     res.redirect('/ticket/' + req.params.ticket);
