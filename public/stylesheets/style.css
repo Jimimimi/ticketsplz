@@ -173,10 +173,23 @@ table td {
   margin-right: 3px;
 }
 
-.ticket .status div.active {
+.ticket .status .active {
   opacity: 1;
   height: 30px;
+  box-shadow: 0px -1px 1px rgba(0,0,0,0.4) inset
 }
+
+.ticket .status .active:after {
+  content: "";
+  position: relative;
+  bottom: -5px;
+  transform: skewY(-1deg);
+  height: 15px;
+  display: block;
+  background: rgba(255,255,200,0.6);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+}
+
 .ticket .status a {
   text-decoration: none;
   color: #111;
