@@ -4,7 +4,9 @@ block content
   div.ticket
     header
       div.id
-        strong Ticket #: #{ticket.id}
+        span
+          small Ticket ID
+        strong #{ticket.id}
       div.status
         div.active(class=ticket.status)
           small=ticket.status
