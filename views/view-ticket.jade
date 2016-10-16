@@ -7,7 +7,7 @@ block content
         strong Ticket #: #{ticket.id}
       div.status
         div.active(class=ticket.status)
-          small(style="color:#fff")=ticket.status
+          small=ticket.status
     - date = moment(ticket.createdAt).fromNow()
     div.issue
       div.content
