@@ -9,9 +9,17 @@ var controller = {
 module.exports = controller;
 
 function index (req,res,next){
-  models.Ticket.findAll()
+  var filter = '*';
+  var query = {};
+
+  if (req.query.filter !== undefined){
+    filter = req.query.filter;
+    query = {where:{status: filter}};
+  }
+  
+  models.Ticket.findAll(query)
   .then(function(tickets){
-    res.render('admin-list-tickets', {tickets:tickets});
+    res.render('admin-list-tickets', {tickets:tickets, activeFilter:filter});
   })
   .catch(function(err){
     next(new Error(err));

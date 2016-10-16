@@ -368,3 +368,29 @@ table td {
 .ticket .reply .btn:focus {
   outline:none;
 }
+
+.filters {
+  float: right;
+  text-align: center;
+}
+
+.filters > div {
+  display: inline-block;
+  padding: 2px 5px;
+  opacity: 0.5;
+  margin: 2px;
+  background: rgba(0,0,0,0.3);
+}
+
+.filters .active {
+  opacity: 1;
+}
+
+.filters > div a,
+.filters > div a:focus,
+.filters > div a:hover,
+.filters > div a:active {
+  text-decoration: none;
+  color: white;
+  font-size: 9px;
+}

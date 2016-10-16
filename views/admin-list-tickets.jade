@@ -6,7 +6,18 @@ block content
       div.id
         span
           small Ticket List
-      div.status
+      div.filters
+        small Display
+        div.all(class=activeFilter == '*' ? 'active' : '')
+          small #[a(href="/admin") All]
+        div.open(class=activeFilter == 'open' ? 'active' : '')
+          small #[a(href="/admin?filter=open") Open]
+        div.accepted(class=activeFilter == 'accepted' ? 'active' : '')
+          small #[a(href="/admin?filter=accepted") Accepted]
+        div.rejected(class=activeFilter == 'rejected' ? 'active' : '')
+          small #[a(href="/admin?filter=rejected") Rejected]
+        div.closed(class=activeFilter == 'closed' ? 'active' : '')
+          small #[a(href="/admin?filter=closed") closed]
     div.list
       ul.body
         each ticket in tickets
