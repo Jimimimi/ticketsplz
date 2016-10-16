@@ -26,11 +26,14 @@ function render (req,res,next){
 }
 
 function create (req,res,next){
+  // Set author to anonymous if no email in the request body
+  var author = req.body.author !== '' ? req.body.author : 'anonymous' ;
+
   var ticket = {
     description: req.body.description,
     category: '',
     status: 'open',
-    author: 'anonymous'
+    author: author
   };
 
   models.Ticket.create(ticket)
