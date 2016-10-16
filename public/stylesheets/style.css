@@ -22,6 +22,31 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+input.author {
+  background: transparent;
+  border: none;
+  color: #9E9E9E;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0;
+  width: 50%;
+}
+
+input.author:focus {
+  outline: 0;
+}
+
+.anon,
+.anon:active,
+.anon:hover,
+.anon:visited,
+.anon:focus {
+  color: #9e9e9e;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 /*--------------------
 Ticket
 --------------------*/
@@ -42,6 +67,9 @@ Ticket
   color: #A2A9B3;
   margin-bottom: 2px;
   margin-top: 2px;
+}
+.ticket header strong {
+  color: #fff;
 }
 .ticket strong {
   font-size: 15px;

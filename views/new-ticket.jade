@@ -2,10 +2,11 @@ extends layout
 
 block content
   div.ticket
-    header
-      div.id
-        strong New Ticket
-    div.reply.base
-      form(action='ticket/', method='post')
+    form(action='ticket/', method='post')
+      header
+        strong Hi #[input.author(type="text", name="author", placeholder="email@example.com" style="display:none")] #[a(class="anon") anonymous]
+        strong How can we assist you?
+      div.reply.base
         input(type="text", name="description", placeholder="Please describe your issue", required="true").textbox.nosmoke
         input(type="submit", value="Send").btn.btn-lg.btn-success
+  script(src="/javascripts/client.js")
