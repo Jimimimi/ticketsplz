@@ -48,25 +48,31 @@ function update (req,res,next){
 }
 
 function updateStatus (req,res,next){
+  var status = req.query.status;
+  console.log('This is my status:', status);
   var update = {
     author: 'admin',
-    data:   'Changed the status to ' + req.query.status,
+    data:   'Changed the status to ' + status,
     timestamp: new Date(),
     TicketId: req.params.ticket
   };
-  models.Ticket.find({id:req.params.ticket})
+  models.Ticket.find({
+    where: {id:req.params.ticket}
+  })
   .then(function(ticket){
-    ticket.status = req.query.status;
-    ticket.save()
-    .then(function(){
+    ticket.update({
+      status: status
+    })
+    .then(function(ticket){
+      console.log('This is my ticket', ticket);
       models.Update.create(update)
       .then(function(update){
         res.redirect('/admin/ticket/' + req.params.ticket);
       })
     })
-    .catch(function(err){
-      next(new Error(err));
-    })
+  })
+  .catch(function(err){
+    next(new Error(err));
   })
 
 }
